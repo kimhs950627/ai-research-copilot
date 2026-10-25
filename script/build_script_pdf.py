@@ -28,6 +28,16 @@ def convert(md: str) -> str:
     in_table = False
     while i < len(lines):
         line = lines[i]
+        # fenced code
+        if line.strip().startswith("```"):
+            if in_ul: out.append("</ul>"); in_ul = False
+            i += 1
+            buf = []
+            while i < len(lines) and not lines[i].strip().startswith("```"):
+                buf.append(lines[i]); i += 1
+            i += 1
+            out.append("<pre class=\"code\">" + html.escape("\n".join(buf)) + "</pre>")
+            continue
         # table
         if line.strip().startswith("|") and i + 1 < len(lines) and re.match(r"^\|[\s:|-]+\|$", lines[i+1].strip()):
             if in_ul: out.append("</ul>"); in_ul = False
@@ -104,7 +114,7 @@ table{border-collapse:collapse;width:100%;margin:4mm 0;font-size:9.5pt}
 th,td{border-bottom:1px solid rgba(22,32,26,.14);padding:2.2mm 3mm 2.2mm 0;text-align:left}
 th{font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:#5B6159;border-bottom:1px solid rgba(22,32,26,.3)}
 hr{border:0;border-top:1px solid rgba(22,32,26,.2);margin:8mm 0}
-ul{padding-left:5mm;margin:0 0 4mm}
+pre.code{background:#EDF0E7;border-left:3px solid #16543A;padding:3mm 4mm;margin:3mm 0 4mm;\n  font-family:"JetBrains Mono","Consolas",monospace;font-size:9pt;line-height:1.55;white-space:pre-wrap;page-break-inside:avoid}\nul{padding-left:5mm;margin:0 0 4mm}
 li{margin-bottom:1.5mm}
 a{color:#16543A;text-decoration:none}
 .foot{margin-top:12mm;padding-top:4mm;border-top:1px solid rgba(22,32,26,.3);font-size:8pt;color:#5B6159}

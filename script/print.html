@@ -21,6 +21,8 @@ table{border-collapse:collapse;width:100%;margin:4mm 0;font-size:9.5pt}
 th,td{border-bottom:1px solid rgba(22,32,26,.14);padding:2.2mm 3mm 2.2mm 0;text-align:left}
 th{font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:#5B6159;border-bottom:1px solid rgba(22,32,26,.3)}
 hr{border:0;border-top:1px solid rgba(22,32,26,.2);margin:8mm 0}
+pre.code{background:#EDF0E7;border-left:3px solid #16543A;padding:3mm 4mm;margin:3mm 0 4mm;
+  font-family:"JetBrains Mono","Consolas",monospace;font-size:9pt;line-height:1.55;white-space:pre-wrap;page-break-inside:avoid}
 ul{padding-left:5mm;margin:0 0 4mm}
 li{margin-bottom:1.5mm}
 a{color:#16543A;text-decoration:none}
@@ -79,6 +81,7 @@ a{color:#16543A;text-decoration:none}
 <blockquote>무대: 8장. &quot;가중치&quot;에서 잠깐 멈춘다. 이 장이 오늘의 핵심이다.</blockquote>
 <p>여기가 오늘 가장 중요한 장입니다. 국민건강영양조사는 전국 대표성을 위해 <strong>층화·집락·가중치</strong>를 쓰는 복합표본조사입니다.</p>
 <p>가중치를 빼고 평균을 내면 숫자는 나옵니다. 그런데 그 숫자는 한국 국민의 값이 아닙니다. 젊은 층이 과대표되고, 유병률이 실제와 달라집니다. 층과 집락을 빼면 표준오차가 과소평가되어, <strong>없는 유의성이 생깁니다.</strong></p>
+<p>2024년 기준으로 건강설문과 검진을 함께 쓰면 <code>wt_itvex</code>, 영양 변수까지 쓰면 <code>wt_tot</code>입니다. <code>wt_exam</code>은 2024년 코드북에 없습니다.</p>
 <p>AI가 가장 자주 틀리는 지점이 바로 여기입니다. 그래서 매 프롬프트에 이 문장을 붙이십시오. &quot;이 분석은 복합표본설계입니다. 층·집락·가중치를 반영하고, 변수명은 코드북에서 확인한 뒤 주석에 적으세요. 가중치를 빼면 결과를 폐기하겠습니다.&quot;</p>
 <p>한 번 말하고 잊으면, 세 번째 스크립트에서 조용히 빠집니다. 그리고 연도를 합칠 때는 더 위험합니다. 연도별 가중치를 어떻게 처리했는지 반드시 확인하고, 그 결정을 문서로 남기십시오.</p>
 <h2>9. 표가 먼저 — 75초</h2>

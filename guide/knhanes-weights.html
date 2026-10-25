@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<title>국민건강영양조사 가중치 — 2024 코드북 정리</title><style>
+@page{size:A4;margin:20mm 18mm}
+*{box-sizing:border-box}
+body{margin:0;background:#F5F6F1;color:#16201A;
+  font-family:"Pretendard","Malgun Gothic","Noto Sans KR",sans-serif;
+  font-size:10.5pt;line-height:1.72;word-break:keep-all;line-break:strict}
+.wrap{max-width:170mm;margin:0 auto;padding:18mm 0 24mm}
+h1,h2,h3{font-family:"Noto Serif KR","Batang",Georgia,serif;line-height:1.22;letter-spacing:-.02em}
+h1{font-size:24pt;margin:0 0 6mm;padding-bottom:5mm;border-bottom:2px solid #16543A}
+h1.part{font-size:18pt;margin:14mm 0 6mm;color:#16543A;page-break-before:always}
+h2{font-size:13pt;margin:8mm 0 2mm;page-break-after:avoid}
+h3{font-size:12pt;margin:6mm 0 2mm}
+p{margin:0 0 3mm}
+strong{font-weight:700}
+em{font-style:normal;color:#16543A;font-weight:700}
+code{font-family:"JetBrains Mono","Consolas",monospace;font-size:.9em;background:#E6E9DD;padding:.1em .3em;border-radius:2px}
+blockquote{margin:3mm 0;padding:3mm 4mm;border-left:3px solid #815800;background:#F2E7CF;font-size:9.5pt}
+blockquote br{display:none}
+table{border-collapse:collapse;width:100%;margin:4mm 0;font-size:9.5pt}
+th,td{border-bottom:1px solid rgba(22,32,26,.14);padding:2.2mm 3mm 2.2mm 0;text-align:left}
+th{font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:#5B6159;border-bottom:1px solid rgba(22,32,26,.3)}
+hr{border:0;border-top:1px solid rgba(22,32,26,.2);margin:8mm 0}
+pre.code{background:#EDF0E7;border-left:3px solid #16543A;padding:3mm 4mm;margin:3mm 0 4mm;
+  font-family:"JetBrains Mono","Consolas",monospace;font-size:9pt;line-height:1.55;white-space:pre-wrap;page-break-inside:avoid}
+ul{padding-left:5mm;margin:0 0 4mm}
+li{margin-bottom:1.5mm}
+a{color:#16543A;text-decoration:none}
+.foot{margin-top:12mm;padding-top:4mm;border-top:1px solid rgba(22,32,26,.3);font-size:8pt;color:#5B6159}
+@media print{body{background:#fff}.wrap{padding:0}h1.part{page-break-before:always}}
+</style></head>
+<body><div class="wrap"><h1 class="part">국민건강영양조사 가중치 — 2024(제9기 3차년도) 코드북을 읽고</h1>
+<blockquote><strong>한 줄 결론</strong> — 2024년 원시자료에는 <code>wt_exam</code>이 없습니다. 건강설문+검진은 <strong><code>wt_itvex</code></strong>, 영양까지 함께 쓰면 <strong><code>wt_tot</code></strong>, 영양만 쓰면 <strong><code>wt_ntr</code></strong> 입니다. 층은 <code>kstrata</code>, 집락은 <code>psu</code>입니다.<br><br>근거: 질병관리청, 『국민건강영양조사 원시자료 이용지침서 제9기(2022-2024)』, 2025-12-30 공개, 2026-07 업데이트, 255쪽. 이 문서의 쪽수는 PDF 쪽수가 아니라 <strong>책에 인쇄된 쪽수</strong>입니다.</blockquote>
+<h2>1. 2024년에 실제로 있는 가중치</h2>
+<p>지침서 p.94의 변수설명 표에서 확인한 이름입니다.</p>
+<table><thead><tr><th>변수</th><th>설명</th><th>쓰는 경우</th></tr></thead><tbody>
+<tr><td><code>wt_hs</code></td><td>가구조사 가중치</td><td>가구 단위 분석(가구소득, 가구원수 등)</td></tr>
+<tr><td><code>wt_itvex</code></td><td>건강설문–검진조사 가중치</td><td>건강면접·건강행태·검진 변수를 함께 쓰는 가장 흔한 분석</td></tr>
+<tr><td><code>wt_ntr</code></td><td>영양조사 가중치</td><td>영양 변수만(연령·성별·연도 보정 포함)</td></tr>
+<tr><td><code>wt_tot</code></td><td>건강설문–검진 + 영양조사 가중치</td><td>검진 변수와 영양 변수를 한 모형에</td></tr>
+<tr><td><code>wt_oe</code></td><td>구강검사 가중치</td><td>구강검사만</td></tr>
+<tr><td><code>wt_oent</code></td><td>구강검사 + 영양조사</td><td>구강 + 영양</td></tr>
+<tr><td><code>wt_bia</code></td><td>체성분검사 가중치(10세 이상)</td><td><strong>2022년만</strong></td></tr>
+<tr><td><code>wt_biant</code></td><td>체성분 + 영양</td><td><strong>2022년만</strong></td></tr>
+<tr><td><code>wt_pft</code></td><td>폐기능검사 가중치</td><td><strong>2024년만</strong></td></tr>
+<tr><td><code>wt_pfnt</code></td><td>폐기능 + 영양</td><td><strong>2024년만</strong></td></tr>
+</tbody></table>
+<p>공통 설계 변수:</p>
+<ul>
+<li><code>kstrata</code> — 분산추정 층</li>
+<li><code>psu</code> — 1차 추출단위(조사구)</li>
+</ul>
+<blockquote>2024년에는 <code>wt_ex</code>, <code>wt_exam</code>, <code>wt_itv</code>, <code>wt_bhv</code>가 기본 가중치로 배포되지 않습니다. 2010년부터 건강설문·검진이 <code>wt_itvex</code>로 통합되었고, 2024년 코드북에도 그 이름만 있습니다.</blockquote>
+<h2>2. 가중치는 “결과 변수”가 아니라 “함께 넣는 모든 변수”로 정한다</h2>
+<p>지침서 p.23–24의 원칙입니다. 회귀분석처럼 여러 변수를 동시에 넣으면, <strong>그 모형에 들어가는 모든 분석변수의 조사 부문·영역·항목</strong>을 보고 가중치를 고릅니다. 결과 변수 하나만 보고 고르면 틀립니다.</p>
+<p>지침서 p.28의 표 6-2를 2024년 기준으로 줄이면:</p>
+<table><thead><tr><th>함께 분석하는 변수</th><th>2024년 가중치</th></tr></thead><tbody>
+<tr><td>건강설문(면접/행태) + 검진</td><td><code>wt_itvex</code></td></tr>
+<tr><td>건강설문 + 영양</td><td><code>wt_tot</code></td></tr>
+<tr><td>검진 + 영양</td><td><code>wt_tot</code></td></tr>
+<tr><td>건강설문 + 검진 + 영양</td><td><code>wt_tot</code></td></tr>
+<tr><td>구강 + (건강설문 또는 검진)</td><td><code>wt_oe</code></td></tr>
+<tr><td>구강 + 영양</td><td><code>wt_oent</code></td></tr>
+<tr><td>체성분(2022만) + (건강설문 또는 검진)</td><td><code>wt_bia</code></td></tr>
+<tr><td>체성분(2022만) + 영양</td><td><code>wt_biant</code></td></tr>
+<tr><td>폐기능(2024만) + (건강설문 또는 검진)</td><td><code>wt_pft</code></td></tr>
+<tr><td>폐기능(2024만) + 영양</td><td><code>wt_pfnt</code></td></tr>
+</tbody></table>
+<h3>자주 하는 선택</h3>
+<ul>
+<li><strong>BMI(검진) + 고혈압(검진/설문)</strong> → <code>wt_itvex</code></li>
+<li><strong>BMI + 에너지 섭취량(영양)</strong> → <code>wt_tot</code></li>
+<li><strong>에너지 섭취량 + 연령·성별</strong> → <code>wt_ntr</code> (연령·성별은 모든 부문에 공통)</li>
+<li><strong>가구소득 + 가구원수</strong> → <code>wt_hs</code></li>
+<li><strong>구강검사 + 식이</strong> → <code>wt_oent</code></li>
+<li><strong>폐기능(2024) + BMI</strong> → <code>wt_pft</code></li>
+<li><strong>폐기능(2024) + 식이</strong> → <code>wt_pfnt</code></li>
+</ul>
+<h2>3. 최소 분석 코드</h2>
+<h3>R — survey</h3>
+<pre class="code">library(survey)
+
+# 2024년 기본 DB: HNYR_ALL (YR=24)
+raw &lt;- readRDS(&quot;01_data/raw/HN24_ALL.rds&quot;)
+
+des &lt;- svydesign(
+  ids     = ~psu,
+  strata  = ~kstrata,
+  weights = ~wt_itvex,   # 검진+건강설문
+  nest    = TRUE,
+  data    = raw
+)
+
+# 가중 유병률과 95% CI
+svymean(~factor(htn), des, na.rm = TRUE)
+svyciprop(~I(htn == 1), des, method = &quot;beta&quot;)
+
+# 복합표본 로지스틱
+fit &lt;- svyglm(htn ~ age + sex + bmi + smoking,
+              design = des, family = quasibinomial())
+summary(fit)
+confint(fit)</pre>
+<p>영양 변수를 넣으면 <code>weights = ~wt_tot</code>으로 바꿉니다.</p>
+<h3>Stata</h3>
+<pre class="code">use &quot;01_data/raw/HN24_ALL.dta&quot;, clear
+
+svyset psu [pweight=wt_itvex], strata(kstrata)
+
+svy: mean htn
+svy: proportion htn
+svy: logistic htn age sex bmi smoking</pre>
+<h3>하위집단(여성만, 40세 이상만) — 필터링하지 말고 subset</h3>
+<pre class="code"># 잘못: 데이터를 먼저 자르면 분산추정이 깨진다
+# raw40 &lt;- subset(raw, age &gt;= 40)
+# des40 &lt;- svydesign(..., data = raw40)
+
+# 올바름: 설계 객체에서 domain을 뺀다
+des40 &lt;- subset(des, age &gt;= 40)
+svymean(~factor(htn), des40, na.rm = TRUE)</pre>
+<p>Stata는 <code>svy, subpop(if age&gt;=40): mean htn</code>입니다. 원자료를 먼저 <code>keep if</code>로 자르면 표준오차가 달라집니다.</p>
+<h2>4. 2022–2024를 합칠 때</h2>
+<p>제9기는 3년간 576개 조사구, <strong>연간 192개</strong>입니다(지침서 p.3, p.10). 기수 내 통합의 일반 원칙은 “기존 가중치 × 연도별 조사구 수 비율”입니다(지침서 p.30, 표 7). 9기는 매년 192개로 같으므로:</p>
+<pre class="code"># 2022, 2023, 2024를 합치는 경우
+dat$wt_pool &lt;- dat$wt_itvex * (192 / 576)   # = /3</pre>
+<p>세 해를 합친 뒤에는 <code>kstrata</code>, <code>psu</code>를 그대로 쓰고, 연도는 <strong>보정변수 또는 층</strong>으로 검토합니다. 연도를 층에 넣는 것이 항상 정답은 아니므로, 지침서의 통합 예제(표 14–16)를 보고 결정합니다.</p>
+<blockquote>주의 — 이 1/3은 지침서의 일반 원칙과 9기 조사구 수에서 <strong>유도한 값</strong>입니다. 9기 전용 통합 예제가 지침서에 명시되어 있지는 않습니다. 실제 논문용 최종 분석 전에 질병관리청 통계분석 상담 또는 통계 담당자에게 한 번 확인하고, 그 결정을 <code>notes/decision.md</code>에 남기세요.</blockquote>
+<p>기수 간 통합은 1/3이 아닙니다. 조사기간 비율을 씁니다. 예를 들어 2007년은 하반기 6개월이라 0.5, 2008–2012년은 각 1, 소계 5.5입니다(지침서 p.31, 표 8). 8기는 코로나19로 2020년이 180개 조사구였지만 조사기간은 1년으로 같아 예외적으로 조사기간 비율을 씁니다(p.30).</p>
+<h2>5. 실수하기 쉬운 지점</h2>
+<p>1. <strong><code>wt_exam</code>을 그대로 쓴다</strong> — 2024년 코드북에 없습니다. <code>wt_itvex</code>입니다.</p>
+<p>2. <strong>결과 변수만 보고 가중치를 고른다</strong> — 함께 넣는 모든 변수의 부문을 봐야 합니다.</p>
+<p>3. <strong>한 논문 안에서 표마다 가중치를 바꾼다</strong> — 가능하면 하나의 분석 가중치로 일관되게. 불가피하면 이유를 방법에 씁니다.</p>
+<p>4. <strong>하위집단을 원자료에서 먼저 자른다</strong> — <code>subset(design, ...)</code> 또는 <code>subpop</code>을 씁니다.</p>
+<p>5. <strong>결측을 0으로 채운다</strong> — <code>na.rm=TRUE</code>로 제외하고, 결측 수와 처리 방법을 표에 적습니다. SAS는 <code>NOMCAR</code> 옵션을 씁니다.</p>
+<p>6. <strong>영양 파일을 개인 단위로 착각한다</strong> — 식품섭취조사(24RC)는 한 사람이 여러 행입니다. 개인 1행 요약 변수를 쓰거나, 집계 후 합칩니다.</p>
+<p>7. <strong>2022년 체성분·2024년 폐기능을 다른 해에 적용한다</strong> — <code>wt_bia</code>는 2022년만, <code>wt_pft</code>는 2024년만입니다.</p>
+<p>8. <strong>연도 통합을 <code>rbind</code> 후 그냥 분석한다</strong> — 통합가중치를 만들지 않으면 각 해가 인구 규모와 다르게 반영됩니다.</p>
+<h2>6. 논문 방법에 쓸 문장</h2>
+<blockquote>“국민건강영양조사 제9기 3차년도(2024) 원시자료를 사용하였다. 복합표본설계를 반영하기 위해 층(<code>kstrata</code>), 집락(<code>psu</code>), 가중치(<code>wt_itvex</code>)를 지정하고 <code>survey</code> 패키지의 <code>svydesign()</code>으로 분석하였다. 건강설문·검진·영양 변수를 함께 포함한 모형에서는 <code>wt_tot</code>을 사용하였다. 하위집단 분석은 설계 객체에서 <code>subset()</code>으로 정의하였다.”</blockquote>
+<h2>7. 확인한 출처</h2>
+<ul>
+<li>질병관리청, 『국민건강영양조사 원시자료 이용지침서 제9기(2022-2024)』, 2025-12-30 공개, 2026-07 업데이트.</li>
+</ul>
+<p>  - 가중치 분류·계산: p.23–26</p>
+<p>  - 기본 가중치 표 6-1: p.26</p>
+<p>  - 연관성분석 가중치 표 6-2: p.28</p>
+<p>  - 기수 내·기수 간 통합: p.30–32</p>
+<p>  - 복합표본 분석: p.35–37</p>
+<p>  - 변수설명(가중치 변수명): p.94</p>
+<ul>
+<li>질병관리청 보도자료, 「국민건강영양조사·청소년건강행태조사 통계집 발간 및 원시자료 공개」, 2025-12-31.</li>
+<li>2024년 원시자료는 2025-12-30 공개, 2026-02-27 이전 연도 추가 공개.</li>
+</ul>
+<blockquote>이 문서는 코드북을 읽은 정리이며, 최종 분석 설계의 책임은 연구자와 통계 담당자에게 있습니다. 원자료 다운로드와 이용은 국민건강영양조사 누리집의 이용 절차를 따르세요.</blockquote>
+<div class="foot">AI Research Copilot · 2024(9기 3차년도) 원시자료 이용지침서 정리 · CC BY 4.0</div>
+</div></body></html>

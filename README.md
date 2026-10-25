@@ -44,6 +44,7 @@ bash ./install/install-mac.sh
 | [`script/발표대본.md`](script/발표대본.md) · [`발표대본.pdf`](script/발표대본.pdf) | 발표 대본 (약 19분) + 예상 질문 10개 |
 | [`cuecards/`](cuecards/) | 인쇄용 큐카드 — 발표 23장, Q&A 10장 (A4 2분할) |
 | [`skills/`](skills/) | 스킬 7종 — OpenCode가 읽는 업무 매뉴얼 |
+| [`guide/knhanes-weights.md`](guide/knhanes-weights.md) · [`PDF`](guide/knhanes-weights.pdf) | **2024년 가중치 정리** — 10종 변수, 선택 규칙, R/Stata 코드, 통합 |
 | [`install/AGENTS.example.md`](install/AGENTS.example.md) | 내 프로필·규칙을 AI에게 알려 주는 파일 |
 
 ## 스킬 7종

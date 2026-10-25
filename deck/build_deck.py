@@ -157,23 +157,23 @@ add("2단계", """
   <div class="two-col">
     <div>
       <ul class="bullets big">
-        <li>층 <code>kstrata</code> · 집락 <code>psu</code> · 가중치 <code>wt_*</code></li>
+        <li>층 <code>kstrata</code> · 집락 <code>psu</code> · 가중치 <code>wt_itvex</code></li>
         <li>가중치를 빼면 젊은 층이 과대표</li>
         <li>층·집락을 빼면 <strong>p값이 실제보다 작아짐</strong></li>
-        <li>변수명은 <strong>연도·파일마다 다름</strong></li>
+        <li>2024년엔 <code>wt_exam</code>이 <strong>없음</strong></li>
       </ul>
     </div>
     <div class="codebox">
       <div class="codebox__head">R · survey</div>
       <pre>des &lt;- svydesign(
   ids = ~psu, strata = ~kstrata,
-  weights = ~wt_exam,
+  weights = ~wt_itvex,
   nest = TRUE, data = raw)</pre>
     </div>
   </div>
   <p class="lede-sm">매 프롬프트에 붙이세요: <strong>“복합표본설계를 반영하고, 변수명은 코드북에서 확인해.”</strong></p>
 </div>
-<div class="slide__source">변수명은 예시이며, 실제 이름은 코드북에서 확인해야 합니다.</div>
+<div class="slide__source">2024(9기 3차년도) 코드북 p.94 기준. 영양 변수를 더하면 wt_tot.</div>
 """, label="KNHANES")
 
 # 09 tables
