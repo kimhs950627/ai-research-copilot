@@ -137,6 +137,7 @@ add("스킬", """
 add("1단계", """
 <div class="slide__kicker">Step 1 · 질문</div>
 <h1 class="slide__title">“알아보고자 했다”는<br>질문이 아닙니다</h1>
+<p class="slide__sub">장면 → 임상·문헌·데이터·심사 → 후보 3개 → 한 문장</p>
 <div class="slide__body">
   <div class="pico">
     <div><b>P</b><span>40세 이상 성인</span></div>
@@ -145,7 +146,7 @@ add("1단계", """
     <div><b>O</b><span>대사증후군</span></div>
   </div>
   <p class="quote-line">“국민건강영양조사에서 40세 이상 성인의 복부비만과<br>대사증후군의 연도별 연관은 어떠한가?”</p>
-  <p class="lede-sm">질문·설계·주 결과·보고 지침을 <code>notes/decision.md</code>에 10줄로 적으면 1단계 끝.</p>
+  <p class="lede-sm">질문·설계·주 결과·보고 지침을 <code>notes/topic.md</code>에 한 장으로 적으면 1단계 끝.</p>
 </div>
 """, label="1단계")
 

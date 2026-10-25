@@ -11,6 +11,8 @@
 
 ## 1단계 — 질문을 한 문장으로
 
+> 빈 워크시트: [`topic-worksheet.md`](topic-worksheet.md). 장면 → 네 개의 문 → 후보 3개 → FINER → 사전부검 순서로 채웁니다.
+
 ```
 @academic-research-writing
 다음 아이디어를 PICO로 정리해줘. 설계 후보 2개와 장단점.
