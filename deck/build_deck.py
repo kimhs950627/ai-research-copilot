@@ -343,7 +343,7 @@ def build():
     print_html = f"""<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
 <title>AI와 함께 논문 쓰고 발표하기 — 인쇄용</title>
 <link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="deck.css">
-<style>@page{{size:13.333in 7.5in;margin:0}} body{{margin:0;background:#fff}}
+<style>@page{{size:13.333in 7.5in;margin:0}} body{{margin:0;background:var(--color-surface-0)}}
 .slide{{page-break-after:always;break-after:page}}</style></head>
 <body>{''.join(parts)}</body></html>"""
     (HERE / "deck-print.html").write_text(print_html, encoding="utf-8")
@@ -351,13 +351,14 @@ def build():
     # presentation shell
     shell = """<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
 <title>AI와 함께 논문 쓰고 발표하기</title>
+<link rel="stylesheet" href="tokens.css">
 <style>
-  html,body{margin:0;height:100%;background:#0F171C;overflow:hidden;font-family:"Pretendard","Noto Sans KR",sans-serif}
+  html,body{margin:0;height:100%;background:var(--color-surface-inverse);overflow:hidden;font-family:"Pretendard","Noto Sans KR",sans-serif}
   #stage{position:absolute;inset:0;display:grid;place-items:center}
-  #frame{position:absolute;left:50%;top:50%;width:1920px;height:1080px;border:0;transform-origin:center center;background:#F6F8F9}
-  #hud{position:fixed;left:20px;bottom:16px;color:#F6F8F9;font-size:14px;letter-spacing:.08em;opacity:.65}
-  #hud b{color:#7FC8D8}
-  #help{position:fixed;right:20px;bottom:16px;color:#F6F8F9;font-size:13px;opacity:.45}
+  #frame{position:absolute;left:50%;top:50%;width:1920px;height:1080px;border:0;transform-origin:center center;background:var(--color-surface-0)}
+  #hud{position:fixed;left:20px;bottom:16px;color:var(--color-text-on-inverse);font-size:16px;letter-spacing:.08em;opacity:.65}
+  #hud b{color:var(--color-accent-quiet)}
+  #help{position:fixed;right:20px;bottom:16px;color:var(--color-text-on-inverse);font-size:16px;opacity:.55}
   @media print{#hud,#help{display:none}}
 </style></head>
 <body>

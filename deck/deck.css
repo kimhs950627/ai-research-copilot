@@ -118,7 +118,7 @@ body.slide-page{width:1920px;height:1080px;overflow:hidden;background:var(--colo
 /* two columns */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
 .codebox{background:var(--color-surface-inverse);color:var(--color-text-on-inverse);padding:0}
-.codebox__head{font-family:var(--font-mono);font-size:20px;letter-spacing:.1em;color:#9FD3DF;
+.codebox__head{font-family:var(--font-mono);font-size:20px;letter-spacing:.1em;color:var(--color-accent-quiet);
   border-bottom:1px solid rgba(246,248,249,.18);padding:14px 22px}
 .codebox pre{margin:0;padding:22px;font-family:var(--font-mono);font-size:28px;line-height:1.5;white-space:pre-wrap}
 
@@ -163,3 +163,5 @@ body.slide-page{width:1920px;height:1080px;overflow:hidden;background:var(--colo
   body.slide-page{width:auto;height:auto}
   .slide{page-break-after:always;break-after:page}
 }
+
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
