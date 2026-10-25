@@ -3,7 +3,7 @@
 국민건강영양조사(KNHANES) 같은 **표 형식 데이터**로 논문을 쓰고 학회에서 발표하는 일을,
 AI 에이전트(OpenCode)와 **역할을 나눠** 진행하는 방법을 담은 저장소입니다.
 
-2026년 대한가정의학회 추계학술대회에서 발표·수상한 실제 사례(HCC vs 혈관종, 공개 초음파 데이터셋)를
+2026년 대한가정의학회 추계학술대회에서 발표한 실제 사례(HCC vs 혈관종, 공개 초음파 데이터셋)를
 바탕으로, 이미지가 아닌 **표 데이터 연구에 그대로 적용되는 절차**로 다시 썼습니다.
 
 > **핵심 원칙** — AI에게 논문을 써 달라고 하지 마세요. AI에게 연구를 **검증하게** 하세요.
@@ -39,7 +39,7 @@ bash ./install/install-mac.sh
 
 | 파일 | 내용 |
 |---|---|
-| [`guide/index.html`](guide/index.html) · [`guide.pdf`](guide/guide.pdf) | **종합 안내서** (42쪽) — 설치, 8단계 워크플로, KNHANES 특별편, 수상 전략, 프롬프트 15개 |
+| [`guide/index.html`](guide/index.html) · [`guide.pdf`](guide/guide.pdf) | **종합 안내서** (42쪽) — 설치, 8단계 워크플로, KNHANES 특별편, 심사 대비 전략, 프롬프트 15개 |
 | [`deck/index.html`](deck/index.html) · [`deck.pdf`](deck/deck.pdf) | 동료에게 이 방법을 소개하는 **발표자료** 17장 (16:9) |
 | [`script/발표대본.md`](script/발표대본.md) · [`발표대본.pdf`](script/발표대본.pdf) | 발표 대본 (약 19분) + 예상 질문 10개 |
 | [`cuecards/`](cuecards/) | 인쇄용 큐카드 — 발표 23장, Q&A 10장 (A4 2분할) |
