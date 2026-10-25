@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "deck-craft deck.json",
+  "description": "make-deck.py 입력. 슬라이드 제목은 주장 문장이어야 한다.",
+  "type": "object",
+  "required": ["meta", "slides"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "audience", "lang"],
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string", "description": "한 줄. 없으면 생략" },
+        "author": { "type": "string", "description": "이름, 소속, 직함" },
+        "org": { "type": "string", "description": "발표자 소속 — 슬라이드 하단에 반복" },
+        "event": { "type": "string", "description": "행사·학회명" },
+        "date": { "type": "string", "description": "YYYY-MM-DD 또는 2026년 10월 18일" },
+        "durationMin": { "type": "number", "description": "발표 시간(분). speaker.md 시간 계산에 사용" },
+        "audience": {
+          "type": "string",
+          "enum": ["academic", "corporate", "government", "education", "internal"]
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["present", "leave-behind"],
+          "default": "present",
+          "description": "present = 발표장 가독, leave-behind = 읽어도 이해"
+        },
+        "lang": { "type": "string", "default": "ko" },
+        "theme": {
+          "type": "object",
+          "description": "생략하면 assets/deck.tokens.css 의 기본값. PPTX 는 이 값을 글꼴 이름으로 쓴다.",
+          "properties": {
+            "fontDisplay": { "type": "string" },
+            "fontBody": { "type": "string" },
+            "accent": { "type": "string" },
+            "surface": { "type": "string" },
+            "ink": { "type": "string" }
+          }
+        }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["type", "title"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["cover", "agenda", "claim", "evidence", "figure", "compare",
+                     "quote", "timeline", "kpi", "flow", "team", "closing",
+                     "appendix", "section"]
+          },
+          "kicker": { "type": "string", "description": "상단 작은 라벨 (섹션명 등)" },
+          "title": { "type": "string", "description": "주장 문장. 라벨 금지" },
+          "lede": { "type": "string", "description": "제목 아래 한 줄" },
+          "body": {
+            "type": "array",
+            "maxItems": 5,
+            "items": { "type": "string" },
+            "description": "불릿. present 모드는 3–4개 권장"
+          },
+          "figure": {
+            "type": "object",
+            "required": ["kind"],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": ["kpi", "bar", "line", "table", "quote", "compare",
+                         "timeline", "flow", "none"]
+              },
+              "data": { "description": "kind 에 따라 배열 또는 {headers, rows} 또는 {left,right}" },
+              "unit": { "type": "string", "description": "예: '일', '%', '건'" },
+              "emphasis": { "type": "integer", "description": "악센트로 강조할 data 인덱스" },
+              "source": { "type": "string", "description": "출처·기간 각주" }
+            }
+          },
+          "footnote": { "type": "string" },
+          "notes": { "type": "string", "description": "스피커 노트 (말할 것·하지 말 것·전환 문장)" },
+          "seconds": { "type": "integer", "description": "목표 시간(초). 기본 40" }
+        }
+      }
+    }
+  }
+}

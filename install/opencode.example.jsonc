@@ -1,0 +1,11 @@
+// OpenCode V2 설정 예시 — 이 파일을 ~/.config/opencode/opencode.jsonc 에 둡니다.
+// 이미 설정 파일이 있으면 "skills" 배열만 추가하세요(덮어쓰지 마세요).
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // 저장소를 복사하지 않고, 이 경로를 직접 읽게 할 수도 있습니다.
+  // 아래 경로를 본인의 실제 저장소 위치로 바꾸세요.
+  "skills": [
+    "C:/Users/내이름/Documents/ai-research-copilot/skills"
+  ]
+}

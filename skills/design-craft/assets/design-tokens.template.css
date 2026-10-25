@@ -1,0 +1,202 @@
+/* design-craft — design tokens starter
+ *
+ * Rule: this file is the ONLY place raw values live. Components use var(--token).
+ * Everything here is intentionally non-generic: warm surfaces, off-black text,
+ * two-step radii, hairline borders instead of big shadows.
+ *
+ * ⚠ 색은 이 파일의 예시값을 그대로 쓰지 않는다 (색이 매번 같아지는 원인).
+ *   새 표면마다 유도한다:
+ *     P=~/.config/opencode/skills/design-craft/scripts/palette-advisor.py
+ *     python3 $P --subject "<무엇>" --medium <card|deck|book|study|site|newsletter> --mood "<무드>"
+ *     python3 $P --family <계열> --medium <매체> --write build/tokens.colors.css
+ *     python3 $P --report <이 파일>          # 대비 PASS 확인
+ *   → 아래 --color-* 블록을 palette-advisor 가 만든 색으로 교체한다(타입·간격·모션은 그대로).
+ *   절차·계열 10종 표: references/palette-selection.md
+ */
+
+:root {
+  /* ── color: surfaces ─────────────────────────────────────────────── */
+  --color-surface-0:      #F2EDE6;   /* page background (warm) */
+  --color-surface-1:      #E8E1D8;   /* alternating section */
+  --color-surface-2:      #DED6CB;   /* card / raised */
+  --color-surface-inverse:#1A1714;   /* warm black, never #000 */
+  --color-surface-overlay:rgba(20, 17, 14, .72);
+
+  /* ── color: text ─────────────────────────────────────────────────── */
+  --color-text-1:         #1A1714;
+  --color-text-2:         #5C544B;
+  --color-text-3:         #6F675B;   /* contrast 5.34:1 — never below 4.5 */
+  --color-text-on-inverse:#F4EFE8;
+
+  /* ── color: lines & accent ───────────────────────────────────────── */
+  --color-border:         rgba(26, 23, 20, .14);
+  --color-border-strong:  rgba(26, 23, 20, .30);
+  --color-accent:         #C2410C;   /* ONE accent, used sparingly */
+  --color-accent-quiet:   #E8CFC2;
+  --color-focus:          #1D4ED8;   /* focus ring, distinct from accent */
+
+  /* ── color: state ────────────────────────────────────────────────── */
+  --color-positive:       #2F6F4E;
+  --color-warning:        #9A6A00;
+  --color-negative:       #A32A2A;
+
+  /* ── type ────────────────────────────────────────────────────────── */
+  --font-display: "Fraunces", "Noto Serif KR", Georgia, serif;
+  --font-body:    "Sora", "Pretendard", system-ui, sans-serif; /* replace: pick a real pair */
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  --text-display: clamp(2.5rem, 6vw, 5.5rem);
+  --text-h1:      3rem;
+  --text-h2:      2rem;
+  --text-h3:      1.25rem;
+  --text-body:    1.0625rem;
+  --text-small:   0.8125rem;
+  --text-mono:    0.875rem;
+
+  --leading-tight:  0.95;
+  --leading-heading:1.15;
+  --leading-body:   1.65;
+
+  --tracking-display:-0.03em;
+  --tracking-heading:-0.02em;
+  --tracking-small:  0.01em;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+
+  /* ── 컨테이너 여백 (좌우는 반드시 이 토큰으로) ─────────────────────── */
+  --maxw: 1080px;                        /* 본문 최대 폭 — 1080 이하 권장 */
+  --pad-x: clamp(28px, 5vw, 80px);       /* 좌우 여백: 375px 화면 28px, 1440px 화면 80px */
+
+  /* ── space (4px base) ────────────────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --container-max: 1280px;
+  --container-pad: clamp(20px, 5vw, 64px);
+  --section-y:     clamp(64px, 8vw, 128px);
+  --section-y-lg:  clamp(96px, 12vw, 200px);
+
+  /* ── shape: keep radii in 3 steps, avoid the uniform-radius AI look ─ */
+  --radius-sm:   2px;
+  --radius-md:   6px;
+  --radius-pill: 999px;
+
+  --border-hairline: 1px solid var(--color-border);
+  --shadow-lift:     0 1px 2px rgba(26, 23, 20, .06);
+  --shadow-overlay:  0 24px 60px -20px rgba(26, 23, 20, .35);
+
+  /* ── motion ──────────────────────────────────────────────────────── */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 500ms;
+  --duration-scene:700ms;
+  --ease-standard: cubic-bezier(.4, 0, .2, 1);
+  --ease-out-expo: cubic-bezier(.22, 1, .36, 1);
+  --stagger-step:  60ms;
+
+  --z-sticky: 100;
+  --z-overlay:200;
+  --z-modal:  300;
+  --z-toast:  400;
+}
+
+/* ── theme phases (multi-step blending, not dark/light binary) ────────
+ * Set --phase on <html> to 0..1 (night weight) and let these resolve.
+ * Keep the image background color equal to --color-surface-0 so the
+ * media edge disappears.
+ */
+:root { --phase: 0; }
+
+html[data-phase="dusk"]  { --color-surface-0: #E6DCD0; --color-text-1: #241E19; }
+html[data-phase="night"] {
+  --color-surface-0: #141210;
+  --color-surface-1: #1B1815;
+  --color-surface-2: #232019;
+  --color-text-1:    #F2EAE0;
+  --color-text-2:    #B8AC9C;
+  --color-text-3:    #8A8073;
+  --color-border:    rgba(242, 234, 224, .16);
+  --color-accent:    #F59E0B;
+}
+
+/* ── base ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--color-surface-0); color: var(--color-text-1); }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  /* 한국어 조판 — 어절(단어) 단위로 줄바꿈한다. 없으면 "독일"이 "독 / 일"로 쪼개진다. */
+  word-break: keep-all;
+  line-break: strict;          /* 줄 끝·줄 머리 금칙 처리 */
+  overflow-wrap: break-word;   /* URL·영문 토큰만 예외적으로 끊김 */
+  hyphens: none;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+  text-wrap: balance;
+}
+
+.display { font-size: var(--text-display); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+a { color: inherit; text-underline-offset: 3px; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+/* focus must always be visible — never kill this without a replacement */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.container { max-width: var(--container-max); margin-inline: auto; padding-inline: var(--container-pad); }
+.section   { padding-block: var(--section-y); }
+.section--lg { padding-block: var(--section-y-lg); }
+
+/* hairline grid instead of shadows */
+.line-grid {
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 100% 96px, 96px 100%;
+}
+
+/* staggered reveal utility */
+.reveal { opacity: 0; transform: translateY(16px); }
+.reveal.is-in {
+  opacity: 1; transform: none;
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              transform var(--duration-slow) var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * var(--stagger-step));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

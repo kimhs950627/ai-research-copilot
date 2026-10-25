@@ -1,0 +1,41 @@
+Unless otherwise noted, this repository is licensed as follows.
+
+CONTENT — text, diagrams, slides, script, cue cards, guide
+  Creative Commons Attribution 4.0 International (CC BY 4.0)
+  https://creativecommons.org/licenses/by/4.0/
+  You may share and adapt with attribution: "김현수, AI Research Copilot (2026)".
+
+CODE — scripts, CSS, build tooling in this repository
+  MIT License
+
+  Copyright (c) 2026 김현수
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+SKILLS — skills/ contain third-party-derived material
+  See each skill folder for its own license and attribution. design-craft and
+  deck-craft reference public design guidance (Anthropic frontend-design,
+  Vercel web interface guidelines) and were adapted by the repository author.
+  academic-research-writing, paper-review, deep-research and
+  clinical-prescribing-safety are distributed here for reuse; see their
+  SKILL.md metadata.
+
+DATA AND PAPERS — not included
+  The HCC vs hemangioma example refers to the public SMC-LUD dataset and the
+  original study. Cite the original authors when reusing them.

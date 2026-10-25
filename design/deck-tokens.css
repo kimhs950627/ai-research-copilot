@@ -1,0 +1,67 @@
+/* design-craft — theme-advisor 로 생성한 토큰 (테마 전체).
+ * theme: swiss-grid (스위스 그리드 (덱·발표)) · fingerprint: swiss-grid|sans-swiss|regular|hairline|flat|light
+ * color family: clinical-cool (임상 쿨그레이 + 틸) · accent #0E7490 · 매체 deck · 대상 AI와 함께 논문 쓰고 발표하기
+ * 타이포:  · 밀도: 보통 · 질감: 평면 · 모션: 정돈된 등장
+ * 이미지: 한 장 큰 도판
+ * 규칙: 좌정렬 12컬럼 + 큰 숫자. 슬라이드당 주장 1개
+ * 모션 주의: 섹션 단위 스태거드 리빌 1회
+ */
+:root {
+  --color-surface-0: #F6F8F9;
+  --color-surface-1: #E7EDF0;
+  --color-surface-2: #D8E1E5;
+  --color-surface-inverse: #0F171C;
+  --color-surface-overlay: rgba(15, 23, 28, 0.72);
+  --color-text-1: #0F171C;
+  --color-text-2: #4F585C;
+  --color-text-3: #5D6468;
+  --color-text-on-inverse: #F6F8F9;
+  --color-text-on-accent: #FFFFFF;
+  --color-border: rgba(15, 23, 28, 0.14);
+  --color-border-strong: rgba(15, 23, 28, 0.3);
+  --color-accent: #0D6C87;
+  --color-accent-quiet: #D1E2E7;
+  --color-accent-strong: #0A5165;
+  --color-focus: #1956C4;
+  --color-positive: #2F6F4E;
+  --color-warning: #855B00;
+  --color-negative: #A32A2A;
+  --font-display: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  --font-body: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --text-display: clamp(3rem, 7vw, 6rem);
+  --text-h1: 3rem;
+  --text-h2: 1.75rem;
+  --text-h3: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.8125rem;
+  --leading-body: 1.55;
+  --leading-heading: 1.06;
+  --tracking-display: -0.035em;
+  --tracking-body: -0.005em;
+  --space-base: 4px;
+  --space-4: 16px;
+  --space-12: 48px;
+  --space-24: 96px;
+  --section-y: clamp(64px, 8vw, 128px);
+  --section-y-lg: clamp(96px, 12vw, 200px);
+  --container-max: 1120px;
+  --pad-x: clamp(28px, 5vw, 80px);
+  --maxw: 1120px;
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-pill: 999px;
+  --shadow-lift: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-overlay: 0 24px 60px -20px rgba(0,0,0,.28);
+  --surface-texture: none;
+  --surface-bg-extra: none;
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-scene: 560ms;
+  --ease-standard: cubic-bezier(.22,1,.36,1);
+  --stagger-step: 70ms;
+}
+
+/* 질감은 배경 레이어로 구현한다(토큰 값만 보고 손으로 hex 를 만들지 않는다):
+   --surface-texture: grain|scanlines|grid|dots|duotone|none  ·  --surface-bg-extra: 배경 레이어 */
+/* 인쇄(PDF·책)면 질감·그림자를 끄고 괘선·굵기로 위계를 만든다. */

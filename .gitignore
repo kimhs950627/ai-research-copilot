@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+deck/png/
+*.docx.mdview-gist
+.DS_Store
+Thumbs.db

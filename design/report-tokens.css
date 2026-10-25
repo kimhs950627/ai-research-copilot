@@ -1,0 +1,67 @@
+/* design-craft — theme-advisor 로 생성한 토큰 (테마 전체).
+ * theme: warm-journal (생활 기록 (일상·건강 습관)) · fingerprint: warm-journal|warm-humanist|airy|soft|paper|light
+ * color family: forest-field (포레스트 · 올리브) · accent #16543A · 매체 report · 대상 의사를 위한 AI 논문·발표 워크플로 가이드
+ * 타이포: 따뜻한 휴머니스트 · 밀도: 여유 · 질감: 종이 · 모션: 정돈된 등장
+ * 이미지: 일러스트 우선
+ * 규칙: 세리프 제목 + 편한 본문. 손그림 도형, 낮은 밀도
+ * 모션 주의: 섹션 단위 스태거드 리빌 1회
+ */
+:root {
+  --color-surface-0: #F5F6F1;
+  --color-surface-1: #E6E9DD;
+  --color-surface-2: #D7DCCB;
+  --color-surface-inverse: #16201A;
+  --color-surface-overlay: rgba(22, 32, 26, 0.72);
+  --color-text-1: #16201A;
+  --color-text-2: #535B53;
+  --color-text-3: #5B6159;
+  --color-text-on-inverse: #F5F6F1;
+  --color-text-on-accent: #FFFFFF;
+  --color-border: rgba(22, 32, 26, 0.14);
+  --color-border-strong: rgba(22, 32, 26, 0.3);
+  --color-accent: #16543A;
+  --color-accent-quiet: #D1DCD4;
+  --color-accent-strong: #103F2C;
+  --color-focus: #1B50B0;
+  --color-positive: #2E6B4C;
+  --color-warning: #815800;
+  --color-negative: #A32A2A;
+  --font-display: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+  --font-body: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --text-display: clamp(2.25rem, 5vw, 4rem);
+  --text-h1: 2.5rem;
+  --text-h2: 1.75rem;
+  --text-h3: 1.1875rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.8125rem;
+  --leading-body: 1.75;
+  --leading-heading: 1.18;
+  --tracking-display: -0.015em;
+  --tracking-body: 0;
+  --space-base: 8px;
+  --space-4: 24px;
+  --space-12: 72px;
+  --space-24: 160px;
+  --section-y: clamp(96px, 12vw, 180px);
+  --section-y-lg: clamp(140px, 16vw, 260px);
+  --container-max: 1040px;
+  --pad-x: clamp(32px, 7vw, 112px);
+  --maxw: 1040px;
+  --radius-sm: 6px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --shadow-lift: 0 2px 6px rgba(0,0,0,.07);
+  --shadow-overlay: 0 30px 70px -24px rgba(0,0,0,.30);
+  --surface-texture: grain(.035);
+  --surface-bg-extra: radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.5), transparent 70%);
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-scene: 560ms;
+  --ease-standard: cubic-bezier(.22,1,.36,1);
+  --stagger-step: 70ms;
+}
+
+/* 질감은 배경 레이어로 구현한다(토큰 값만 보고 손으로 hex 를 만들지 않는다):
+   --surface-texture: grain|scanlines|grid|dots|duotone|none  ·  --surface-bg-extra: 배경 레이어 */
+/* 인쇄(PDF·책)면 질감·그림자를 끄고 괘선·굵기로 위계를 만든다. */

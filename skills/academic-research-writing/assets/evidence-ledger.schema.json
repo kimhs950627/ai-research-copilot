@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Evidence Ledger",
+  "description": "Claim-to-source ledger. One entry per material claim.",
+  "type": "object",
+  "required": ["project", "created", "entries"],
+  "properties": {
+    "project": { "type": "string" },
+    "created": { "type": "string" },
+    "citation_style": { "type": "string" },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/entry" }
+    }
+  },
+  "definitions": {
+    "entry": {
+      "type": "object",
+      "required": ["claim_id", "claim", "source", "access_level", "support_status", "verification_status"],
+      "properties": {
+        "claim_id": { "type": "string", "pattern": "^C[0-9]+$" },
+        "claim": { "type": "string" },
+        "source": {
+          "type": "object",
+          "required": ["title"],
+          "properties": {
+            "source_id": { "type": "string" },
+            "title": { "type": "string" },
+            "authors": { "type": "array", "items": { "type": "string" } },
+            "year": { "type": ["integer", "null"] },
+            "journal": { "type": ["string", "null"] },
+            "doi": { "type": ["string", "null"] },
+            "pmid": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"] }
+          }
+        },
+        "access_level": { "enum": ["full_text", "abstract", "metadata_only"] },
+        "evidence_location": { "type": ["string", "null"] },
+        "supporting_excerpt": { "type": ["string", "null"] },
+        "study": {
+          "type": "object",
+          "properties": {
+            "design": { "type": ["string", "null"] },
+            "population": { "type": ["string", "null"] },
+            "sample_size": { "type": ["integer", "null"] },
+            "intervention": { "type": ["string", "null"] },
+            "comparator": { "type": ["string", "null"] },
+            "outcome": { "type": ["string", "null"] },
+            "follow_up": { "type": ["string", "null"] }
+          }
+        },
+        "result": {
+          "type": "object",
+          "properties": {
+            "estimate": { "type": ["number", "null"] },
+            "measure": { "type": ["string", "null"] },
+            "confidence_interval": { "type": ["string", "null"] },
+            "denominator": { "type": ["integer", "null"] },
+            "unit": { "type": ["string", "null"] }
+          }
+        },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "support_status": { "enum": ["direct", "partial", "conflicting", "unsupported"] },
+        "verification_status": { "enum": ["unverified", "verified", "flagged"] },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
